@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1115175484488593629}
   - component: {fileID: 7911163320867924579}
   - component: {fileID: 5505243389316591800}
+  - component: {fileID: 4974243699188847057}
   m_Layer: 0
   m_Name: ps_fire
   m_TagString: Untagged
@@ -4849,6 +4850,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireDistance: {fileID: 11400000, guid: c6f74077377cb784e951a7b6a5db3712, type: 2}
   _particle: {fileID: 1115175484488593629}
+  _collider: {fileID: 4974243699188847057}
+--- !u!65 &4974243699188847057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246058917532087375}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0.125, z: 2}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &8319964117007000311
 GameObject:
   m_ObjectHideFlags: 0
