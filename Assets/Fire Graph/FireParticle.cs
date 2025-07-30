@@ -25,6 +25,10 @@ public class FireParticle : MonoBehaviour
         _shape.radius = Mathf.Lerp(1, _fireDistance.Value, progress);
         _emission.rateOverTime = Mathf.Lerp(_basicRateOverTime, _maximunRateOverTime, progress);
         float emitterProbability = Mathf.Lerp(0.3f, 0.6f, progress);
-        _subEmitters.SetSubEmitterEmitProbability(0,emitterProbability);
+        _subEmitters.SetSubEmitterEmitProbability(0, emitterProbability);
+    }
+    public void Extinguish()
+    {
+        _particle.Stop();
     }
 }

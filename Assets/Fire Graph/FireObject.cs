@@ -1,19 +1,31 @@
 
 using UnityEngine;
-
-public class FireObject : MonoBehaviour
+public class FireObject : MonoBehaviour, IExtinguishable
 {
+    [Header("Fire Settings")]
+    [SerializeField] private FireType _type;
+    public float burnTime = 5.0f; //Seconds
+    public float combustibility = 0.5f;
+    public float explosionRadius = 0.0f;
+    public GameObject fireParticlesPrefab;
+
+    [Header("Life System")]
+    [SerializeField] private float _maxLife = 100f;
+    private float _currentLife;
+    [SerializeField, Tooltip("How much does the expansion affects life"), Range(0f,2f)] private float _expansionFactor = 1.2f;
+    [SerializeField] private float _expansionTime = 2.5f; //Seconds
+
+    private float _expansionTimer;
+    private float _burnMultiplier = 1;
     private Material _material;
     private FireParticle _fireParticle;
-    public float burn_time = 5.0f; //Seconds;
-    public float combustibility = 0.5f;
-    public float explosion_radius = 0.0f;
-    public GameObject fireParticlesPrefab;
     private GameObject _fireParticleGameObject;
 
-    [HideInInspector] public bool is_burning = false;
-    [HideInInspector] public bool is_burnt = false;
-    [HideInInspector] public float burn_timer = 0.0f;
+    [HideInInspector] public bool isBurning = false;
+    [HideInInspector] public bool isBurnt = false;
+    [HideInInspector] public float burnTimer = 0.0f;
+
+    public float GetPercentCombusted() => Mathf.Clamp01((burnTime - burnTimer) / burnTime);
 
     void Awake()
     {
@@ -28,50 +40,73 @@ public class FireObject : MonoBehaviour
 
     public void Ignite()
     {
-        if (is_burning || is_burnt)
+        if (isBurning || isBurnt)
         {
             return;
         }
 
-        is_burning = true;
-        burn_timer = burn_time;
-        
-        Debug.Log($"{gameObject.name} has ignited!");
-    }
+        isBurning = true;
+        burnTimer = burnTime;
+        _expansionTimer = _expansionTime;
+        _currentLife = _maxLife;
+        _burnMultiplier = 1;
 
-    public float GetPercentCombusted()
-    {
-        return Mathf.Clamp01((burn_time - burn_timer) / burn_time);
+        Debug.Log($"{gameObject.name} has ignited!");
     }
 
     // Update is called once per frame
     public void BurnUpdate()
     {
-        if (is_burning)
-        {
-            burn_timer -= Time.deltaTime;
-            float progress = Mathf.Clamp01(1.0f - (burn_timer / burn_time));
-            SetBurnProgress(progress);
-            _fireParticle.UpdateValues(progress);
+        if (!isBurning) return;
 
-            if (burn_timer <= 0.0f)
-            {
-                BurnOut();
-            }
-        }
+        burnTimer -= Time.deltaTime;
+        _expansionTimer -= Time.deltaTime * _burnMultiplier;
+
+        //Calculate progress (0 to 1)
+        float burningProgress = Mathf.Clamp01(1.0f - (burnTimer / burnTime));
+        float expansionProgress = Mathf.Clamp01(1.0f - (_expansionTimer / _expansionTime));
+
+        _material.SetFloat("_BurnProgress", burningProgress);
+        _fireParticle.UpdateValues(expansionProgress);
+
+        if (burnTimer <= 0.0f) BurnOut();
     }
 
     private void BurnOut()
     {
-        is_burning = false;
-        is_burnt = true;
-        SetBurnProgress(1.0f);
+        isBurning = false;
+        isBurnt = true;
+        _material.SetFloat("_BurnProgress", 1f);
         Debug.Log($"{gameObject.name} has burnt out.");
     }
 
-    private void SetBurnProgress(float value)
+    public void Extinguish(FireType foamType)
     {
-        _material.SetFloat("_BurnProgress", value);
+        if (isBurnt || !isBurning) return; //If already burnt or not burning do nothing
+
+        float effectiveness = foamType == _type ? 1.0f : 0.66f;
+
+        float extinguishEffect = effectiveness * 12f * Time.deltaTime;
+        extinguishEffect /= CalculateExpansionModifier();
+
+        _currentLife = Mathf.Max(_currentLife - extinguishEffect, 0);
+        _burnMultiplier = _currentLife / _maxLife;
+
+        if (_currentLife <= 0) CompletelyExtinguish();
     }
-    
+    private float CalculateExpansionModifier()
+    {
+        float expansionProgress = 1f - Mathf.Clamp01(_expansionTimer / _expansionTime);
+        return 1f + (expansionProgress * _expansionFactor);
+    }
+
+    private void CompletelyExtinguish()
+    {
+        isBurning = false;
+        _burnMultiplier = 0;
+        _fireParticle.Extinguish();
+        Debug.Log($"{gameObject.name} has been completely extinguished.");
+    }
+
 }
+

@@ -57,13 +57,13 @@ public class FireSimulationManager : MonoBehaviour
             FireGraphNode currentNode = fireGraph[id];
 
             currentFireObj.BurnUpdate();
-            if(currentFireObj.is_burnt)
+            if(currentFireObj.isBurnt)
             {
                 burnt.Add(id);
-                if (currentFireObj.explosion_radius > 0f)
+                if (currentFireObj.explosionRadius > 0f)
                 {
-                    PropagateExplosion(id, currentFireObj.explosion_radius);
-                    SpawnExplosionVisual(currentFireObj.transform.position, currentFireObj.explosion_radius);
+                    PropagateExplosion(id, currentFireObj.explosionRadius);
+                    SpawnExplosionVisual(currentFireObj.transform.position, currentFireObj.explosionRadius);
                 }
             }
             else
@@ -152,7 +152,7 @@ public class FireSimulationManager : MonoBehaviour
         foreach (var o in fire_objects)
         {
             fireObjects[o.gameObject.name] = o;
-            o.burn_timer = 0f; // Reset burn timer
+            o.burnTimer = 0f; // Reset burn timer
         }
     }
     void SpawnExplosionVisual(Vector3 position, float radius)
