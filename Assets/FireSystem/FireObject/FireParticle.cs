@@ -28,7 +28,7 @@ public class FireParticle : MonoBehaviour
 
         float radius = Mathf.Lerp(1, _fireDistance.Value, progress);
         float emitterProbability = Mathf.Lerp(0.3f, 0.6f, progress);
-        _colliderSize = new Vector3(radius*2, 0.125f, radius*2);
+        _colliderSize = new Vector3(radius * 2, 0.125f, radius * 2);
 
         _shape.radius = radius;
         _collider.size = _colliderSize;
@@ -39,5 +39,13 @@ public class FireParticle : MonoBehaviour
     {
         _particle.Stop();
         _collider.enabled = false;
+    }
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.LogWarning("Something hit the flames");
+        if (other.GetComponentInParent<Extinguisher>() != null)
+        {
+            Debug.LogWarning("Foam hitted the flames");
+        }
     }
 }

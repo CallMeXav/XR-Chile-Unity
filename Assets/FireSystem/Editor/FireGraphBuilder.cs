@@ -74,7 +74,7 @@ public class FireGraphBuilder : EditorWindow
 
     void GenerateGraph()
     {
-        FireObject[] fire_objects = GameObject.FindObjectsOfType<FireObject>();
+        FireObject[] fire_objects = FindObjectsByType<FireObject>(FindObjectsSortMode.None);
         FireGraph graph = new FireGraph();
         Dictionary<string, FireGraphNode> node_map = new Dictionary<string, FireGraphNode>();
 
