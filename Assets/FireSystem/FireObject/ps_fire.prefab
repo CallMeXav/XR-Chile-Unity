@@ -3821,6 +3821,11 @@ ParticleSystem:
       type: 0
       properties: 0
       emitProbability: 0.3
+    - serializedVersion: 3
+      emitter: {fileID: 4588410311330313862}
+      type: 2
+      properties: 0
+      emitProbability: 1
   LightsModule:
     enabled: 0
     ratio: 0

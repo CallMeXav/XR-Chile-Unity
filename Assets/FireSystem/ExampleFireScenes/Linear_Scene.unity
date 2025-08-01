@@ -739,7 +739,7 @@ MonoBehaviour:
   fireParticlesPrefab: {fileID: 6246058917532087375, guid: bad9cbf7a81ec2c42ab8e04d410b0ee4, type: 3}
   _maxLife: 100
   _expansionFactor: 1.2
-  _expansionTime: 2.5
+  _expansionTime: 20
   isBurning: 0
   isBurnt: 0
   burnTimer: 0
@@ -1351,6 +1351,10 @@ PrefabInstance:
     - target: {fileID: 1603069593601344492, guid: 607161f146bac5a4badf3c9701fcf413, type: 3}
       propertyPath: m_Name
       value: Extinguiser
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062378141475695593, guid: 607161f146bac5a4badf3c9701fcf413, type: 3}
+      propertyPath: _isExtinguishing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6251622785117158927, guid: 607161f146bac5a4badf3c9701fcf413, type: 3}
       propertyPath: m_LocalPosition.x

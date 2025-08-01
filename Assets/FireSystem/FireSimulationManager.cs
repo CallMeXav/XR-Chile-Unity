@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Watona.Variables;
 
 public class FireSimulationManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class FireSimulationManager : MonoBehaviour
     private HashSet<string> burnt = new HashSet<string>();
     private List<string> burning = new List<string>();
     private List<string> pendingIgnitions = new List<string>();
+
+    private bool HasPropagatedEnough(FireObject fireObject, FireGraphEdge edge) => fireObject.GetPercentPropagated() * edge.maximunDistance >= edge.distance;
 
     void Start()
     {
@@ -57,7 +60,7 @@ public class FireSimulationManager : MonoBehaviour
             FireGraphNode currentNode = fireGraph[id];
 
             currentFireObj.BurnUpdate();
-            if(currentFireObj.isBurnt)
+            if (currentFireObj.HasBurnt)
             {
                 burnt.Add(id);
                 if (currentFireObj.explosionRadius > 0f)
@@ -66,7 +69,7 @@ public class FireSimulationManager : MonoBehaviour
                     SpawnExplosionVisual(currentFireObj.transform.position, currentFireObj.explosionRadius);
                 }
             }
-            else
+            if (currentFireObj.IsBurning)
             {
                 existingBurning.Add(id);
             }
@@ -82,14 +85,14 @@ public class FireSimulationManager : MonoBehaviour
                 if (!fireObjects.ContainsKey(targetId)) continue;
 
                 FireObject neighbor = fireObjects[targetId];
-                //Are we above the combustibility threshold to set out neigbor on fire?
-                if (currentFireObj.GetPercentCombusted() >= neighbor.combustibility)
+                //Did the propagation hit the neighbor and is it above the combustibility threshold to set out neighbor on fire?
+                
+                if (HasPropagatedEnough(currentFireObj, edge) && currentFireObj.GetPercentCombusted() >= neighbor.combustibility)
                 {
                     Ignite(targetId);
                 }
             }
         }
-
         //Update what is still burnign after an update with new ignitions. 
         burning = existingBurning;
         burning.AddRange(pendingIgnitions);
@@ -101,7 +104,7 @@ public class FireSimulationManager : MonoBehaviour
         }
     }
 
-        void LoadFireGraph()
+    void LoadFireGraph()
     {
         TextAsset jsonFile = Resources.Load<TextAsset>(fireGraphFileName);
         if (jsonFile == null)
@@ -152,7 +155,7 @@ public class FireSimulationManager : MonoBehaviour
         foreach (var o in fire_objects)
         {
             fireObjects[o.gameObject.name] = o;
-            o.burnTimer = 0f; // Reset burn timer
+            // o.BurnTimer = 0f; // Reset burn timer
         }
     }
     void SpawnExplosionVisual(Vector3 position, float radius)

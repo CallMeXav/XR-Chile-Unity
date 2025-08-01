@@ -1,6 +1,26 @@
 {
     "nodes": [
         {
+            "id": "Sphere_01 (4)",
+            "position": {
+                "x": 10.130000114440918,
+                "y": 0.0,
+                "z": 5.639999866485596
+            },
+            "edges": [
+                {
+                    "targetId": "Sphere_01 (1)",
+                    "distance": 9.578857421875,
+                    "maximunDistance": 10.0
+                },
+                {
+                    "targetId": "Sphere_01 (2)",
+                    "distance": 7.559689044952393,
+                    "maximunDistance": 10.0
+                }
+            ]
+        },
+        {
             "id": "Sphere_01 (5)",
             "position": {
                 "x": 19.770000457763673,
@@ -9,12 +29,89 @@
             },
             "edges": [
                 {
+                    "targetId": "Sphere_01 (1)",
+                    "distance": 7.2919816970825199,
+                    "maximunDistance": 10.0
+                },
+                {
                     "targetId": "Sphere_01 (2)",
-                    "distance": 4.643490314483643
+                    "distance": 4.643490314483643,
+                    "maximunDistance": 10.0
+                }
+            ]
+        },
+        {
+            "id": "Sphere_01 (3)",
+            "position": {
+                "x": 7.75,
+                "y": 0.0,
+                "z": -4.260000228881836
+            },
+            "edges": [
+                {
+                    "targetId": "Sphere_01 (2)",
+                    "distance": 8.506309509277344,
+                    "maximunDistance": 10.0
+                },
+                {
+                    "targetId": "Sphere_01",
+                    "distance": 8.843647956848145,
+                    "maximunDistance": 10.0
+                }
+            ]
+        },
+        {
+            "id": "Sphere_01 (1)",
+            "position": {
+                "x": 19.600000381469728,
+                "y": 0.0,
+                "z": 7.079999923706055
+            },
+            "edges": [
+                {
+                    "targetId": "Sphere_01 (4)",
+                    "distance": 9.578857421875,
+                    "maximunDistance": 10.0
+                },
+                {
+                    "targetId": "Sphere_01 (5)",
+                    "distance": 7.2919816970825199,
+                    "maximunDistance": 10.0
+                },
+                {
+                    "targetId": "Sphere_01 (2)",
+                    "distance": 8.398392677307129,
+                    "maximunDistance": 10.0
+                }
+            ]
+        },
+        {
+            "id": "Sphere_01 (2)",
+            "position": {
+                "x": 15.130000114440918,
+                "y": 0.0,
+                "z": -0.030000030994415284
+            },
+            "edges": [
+                {
+                    "targetId": "Sphere_01 (4)",
+                    "distance": 7.559689044952393,
+                    "maximunDistance": 10.0
+                },
+                {
+                    "targetId": "Sphere_01 (5)",
+                    "distance": 4.643490314483643,
+                    "maximunDistance": 10.0
+                },
+                {
+                    "targetId": "Sphere_01 (3)",
+                    "distance": 8.506309509277344,
+                    "maximunDistance": 10.0
                 },
                 {
                     "targetId": "Sphere_01 (1)",
-                    "distance": 7.2919816970825199
+                    "distance": 8.398392677307129,
+                    "maximunDistance": 10.0
                 }
             ]
         },
@@ -28,91 +125,8 @@
             "edges": [
                 {
                     "targetId": "Sphere_01 (3)",
-                    "distance": 8.843647956848145
-                }
-            ]
-        },
-        {
-            "id": "Sphere_01 (2)",
-            "position": {
-                "x": 15.130000114440918,
-                "y": 0.0,
-                "z": -0.030000030994415284
-            },
-            "edges": [
-                {
-                    "targetId": "Sphere_01 (5)",
-                    "distance": 4.643490314483643
-                },
-                {
-                    "targetId": "Sphere_01 (3)",
-                    "distance": 8.506309509277344
-                },
-                {
-                    "targetId": "Sphere_01 (1)",
-                    "distance": 8.398392677307129
-                },
-                {
-                    "targetId": "Sphere_01 (4)",
-                    "distance": 7.559689044952393
-                }
-            ]
-        },
-        {
-            "id": "Sphere_01 (3)",
-            "position": {
-                "x": 7.75,
-                "y": 0.0,
-                "z": -4.260000228881836
-            },
-            "edges": [
-                {
-                    "targetId": "Sphere_01",
-                    "distance": 8.843647956848145
-                },
-                {
-                    "targetId": "Sphere_01 (2)",
-                    "distance": 8.506309509277344
-                }
-            ]
-        },
-        {
-            "id": "Sphere_01 (1)",
-            "position": {
-                "x": 19.600000381469728,
-                "y": 0.0,
-                "z": 7.079999923706055
-            },
-            "edges": [
-                {
-                    "targetId": "Sphere_01 (5)",
-                    "distance": 7.2919816970825199
-                },
-                {
-                    "targetId": "Sphere_01 (2)",
-                    "distance": 8.398392677307129
-                },
-                {
-                    "targetId": "Sphere_01 (4)",
-                    "distance": 9.578857421875
-                }
-            ]
-        },
-        {
-            "id": "Sphere_01 (4)",
-            "position": {
-                "x": 10.130000114440918,
-                "y": 0.0,
-                "z": 5.639999866485596
-            },
-            "edges": [
-                {
-                    "targetId": "Sphere_01 (2)",
-                    "distance": 7.559689044952393
-                },
-                {
-                    "targetId": "Sphere_01 (1)",
-                    "distance": 9.578857421875
+                    "distance": 8.843647956848145,
+                    "maximunDistance": 10.0
                 }
             ]
         }

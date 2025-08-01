@@ -94,7 +94,7 @@ public class FireGraphBuilder : EditorWindow
                 float dist = Vector3.Distance(a.position, b.position);
                 if (dist <= connectionThreshold.Value)
                 {
-                    a.edges.Add(new FireGraphEdge(b.id, dist));
+                    a.edges.Add(new FireGraphEdge(b.id, dist, connectionThreshold.Value));
                 }
             }
         }

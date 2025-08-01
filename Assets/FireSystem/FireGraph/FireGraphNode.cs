@@ -8,11 +8,13 @@ public class FireGraphEdge
 {
     public string targetId;
     public float distance;
+    public float maximunDistance;
 
-    public FireGraphEdge(string targetId, float distance)
+    public FireGraphEdge(string targetId, float distance, float maximunDistance)
     {
         this.targetId = targetId;
         this.distance = distance;
+        this.maximunDistance = maximunDistance;
     }
 
 }
