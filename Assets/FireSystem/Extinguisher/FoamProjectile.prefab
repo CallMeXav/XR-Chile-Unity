@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9185005361006524840}
   - component: {fileID: 423720799404892614}
   - component: {fileID: 8099294061929817479}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FoamProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565ab25045a47474b919807a66d86e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 60
+  lifetime: 30
 --- !u!65 &423720799404892614
 BoxCollider:
   m_ObjectHideFlags: 0
